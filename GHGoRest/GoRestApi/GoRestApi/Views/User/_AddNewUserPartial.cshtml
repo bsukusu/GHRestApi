@@ -1,0 +1,58 @@
+﻿﻿@model GoRestApi.Models.UserViewModel.CreateUserModel
+
+<div class="modal-header">
+    <h1 class="modal-title fs-5">Create New User</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="frmAddNewUser" asp-action="AddNewUser" method="post"
+          data-ajax="true" data-ajax-method="post" data-ajax-update="#modalAddContent">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Gender"></label>
+            <select asp-for="Gender" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Status"></label>
+            <select asp-for="Status" class="form-control">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary btn-sm" form="frmAddNewUser"><i class="fa fa-save me-2"></i>Save</button>
+</div>
+
+@if (string.IsNullOrEmpty(Model.Done) == false)
+{
+    <script>
+        $("#modalAdd").modal("hide");
+        toastr.success('@Model.Done', "Success");
+        refresh.click();
+    </script>
+}

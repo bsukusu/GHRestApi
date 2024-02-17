@@ -1,0 +1,15 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace GoRestApi.Entities
+{
+
+    public class DatabaseContext : DbContext
+    {
+
+        public DatabaseContext(DbContextOptions options) : base(options)
+        {
+
+        }
+        public DbSet<User> Users { get; set; }
+    }
+}
